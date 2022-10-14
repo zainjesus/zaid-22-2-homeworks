@@ -2,12 +2,11 @@ from aiogram import types, Dispatcher
 from config import bot, ADMIN
 import random
 
-emoji = ['🎲', '🏀', '⚽️', '🎯', '🎳', '🎰']
-
 
 async def echo(message: types.Message):
+    emoji = ['🎲', '🏀', '⚽️', '🎯', '🎳', '🎰']
     if message.text.startswith('game'):
-        if not message.from_user.id in ADMIN:
+        if message.from_user.id not in ADMIN:
             await message.answer("Доступно только для админа!")
         else:
             await bot.send_dice(message.chat.id, emoji=random.choice(emoji))
@@ -19,3 +18,4 @@ async def echo(message: types.Message):
 
 def register_handlers_extra(dp: Dispatcher):
     dp.register_message_handler(echo)
+    
