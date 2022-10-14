@@ -18,4 +18,3 @@ async def echo(message: types.Message):
 
 def register_handlers_extra(dp: Dispatcher):
     dp.register_message_handler(echo)
-    
