@@ -17,7 +17,7 @@ async def quiz_2(call: types.CallbackQuery):
         'Shadowraze'
     ]
     await bot.send_poll(
-        chat_id=call.from_user.id,
+        chat_id=call.message.chat.id,
         question=question,
         options=answers,
         is_anonymous=True,
@@ -41,7 +41,7 @@ async def quiz_3(call: types.CallbackQuery):
         'Terrorblade'
     ]
     await bot.send_poll(
-        chat_id=call.from_user.id,
+        chat_id=call.message.chat.id,
         question=question,
         options=answers,
         is_anonymous=True,
@@ -62,7 +62,7 @@ async def quiz_4(call: types.CallbackQuery):
         'Boots Of Travel'
     ]
     await bot.send_poll(
-        chat_id=call.from_user.id,
+        chat_id=call.message.chat.id,
         question=question,
         options=answers,
         is_anonymous=True,

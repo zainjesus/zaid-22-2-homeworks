@@ -5,23 +5,23 @@ import random
 
 
 async def start_handler(message: types.Message):
-    await bot.send_message(message.from_user.id, f" Приветствую, {message.from_user.first_name}!\nДля полной информации"
-                                                 f" обо мне воспользуйтесь командой /help")
+    await bot.send_message(message.chat.id, f" Приветствую, {message.from_user.first_name}!\nДля полной информации"
+                                            f" обо мне воспользуйтесь командой /help")
 
 
 async def help_handler(message: types.Message):
-    await bot.send_message(message.from_user.id, 'Чтобы начать викторину, введите команду /quiz'
-                                                 '\nЧтобы получить случайный мем, введите команду /meme'
-                                                 '\nЧтобы сыграть со мной в кости, введите /dice'
-                                                 '\nЧтобы закрепить сообщение, введите команду !pin'
-                                                 ' в ответе на это сообщение'
-                                                 '\nЧтобы открепить все сообщения, закрепленные мной'
-                                                 ', введите команду !unpinall'
-                                                 '\nЕсли начать сообщение со слова "game", то я отправлю случайный '
-                                                 'анимированный эмодзи (доступно только для админов)'
-                                                 '\nТакже вы можете отправить мне целое число,'
-                                                 ' и я возведу его в квадрат'
-                                                 '\nВ противном случае я просто повторю за вами')
+    await bot.send_message(message.chat.id, 'Чтобы начать викторину, введите команду /quiz'
+                                            '\nЧтобы получить случайный мем, введите команду /meme'
+                                            '\nЧтобы сыграть со мной в кости, введите /dice'
+                                            '\nЧтобы закрепить сообщение, введите команду !pin'
+                                            ' в ответе на это сообщение'
+                                            '\nЧтобы открепить все сообщения, закрепленные мной'
+                                            ', введите команду !unpinall'
+                                            '\nЕсли начать сообщение со слова "game", то я отправлю случайный '
+                                            'анимированный эмодзи (доступно только для админов)'
+                                            '\nТакже вы можете отправить мне целое число,'
+                                            ' и я возведу его в квадрат'
+                                            '\nВ противном случае я просто повторю за вами')
 
 
 async def quiz_1(message: types.Message):
@@ -38,7 +38,7 @@ async def quiz_1(message: types.Message):
         'Invoker'
     ]
     await bot.send_poll(
-        chat_id=message.from_user.id,
+        chat_id=message.chat.id,
         question=question,
         options=answers,
         is_anonymous=True,
@@ -61,7 +61,7 @@ async def meme(message: types.Message):
     photo9 = open('media/mem9.jpg', 'rb')
     photo10 = open('media/mem10.jpg', 'rb')
     lst = [photo, photo2, photo3, photo4, photo5, photo6, photo7, photo8, photo9, photo10]
-    await bot.send_photo(message.from_user.id, random.choice(lst))
+    await bot.send_photo(message.chat.id, random.choice(lst))
 
 
 async def pin(message: types.Message):
