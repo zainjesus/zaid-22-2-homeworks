@@ -2,6 +2,7 @@ from aiogram import types, Dispatcher
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from config import bot
 import random
+from database.bot_db import sql_command_random
 
 
 async def start_handler(message: types.Message):
@@ -90,6 +91,10 @@ async def dice(message: types.Message):
         await message.answer("Ничья!")
 
 
+async def get_random_user(message: types.Message):
+    await sql_command_random(message)
+
+
 def register_handlers_client(dp: Dispatcher):
     dp.register_message_handler(start_handler, commands=['start'])
     dp.register_message_handler(help_handler, commands=['help'])
@@ -98,3 +103,4 @@ def register_handlers_client(dp: Dispatcher):
     dp.register_message_handler(pin, commands=['pin'], commands_prefix='!')
     dp.register_message_handler(unpin, commands=['unpinall'], commands_prefix='!')
     dp.register_message_handler(dice, commands=['dice'])
+    dp.register_message_handler(sql_command_random, commands=['get'])

@@ -4,6 +4,7 @@ from aiogram.dispatcher.filters import Text
 from aiogram.dispatcher.filters.state import State, StatesGroup
 from config import bot, ADMIN
 from keyboard.client_kb import direction_markup, submit_markup, cancel_markup
+from database.bot_db import sql_command_insert
 import random
 
 
@@ -87,6 +88,7 @@ async def input_group(message: types.Message, state: FSMContext):
 
 async def submit(message: types.Message, state: FSMContext):
     if message.text.lower() == "да":
+        await sql_command_insert(state)
         await state.finish()
         await message.answer("Регистрация завершена")
     elif message.text.lower() == "нет":

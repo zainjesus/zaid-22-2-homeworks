@@ -7,7 +7,7 @@ async def echo(message: types.Message):
     emoji = ['🎲', '🏀', '⚽️', '🎯', '🎳', '🎰']
     if message.text.startswith('game'):
         if message.from_user.id not in ADMIN:
-            await message.answer("Доступно только для админов!")
+            await message.answer("Доступно только для админа!")
         else:
             await bot.send_dice(message.chat.id, emoji=random.choice(emoji))
     elif message.text.isdigit():
