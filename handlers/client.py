@@ -12,13 +12,17 @@ async def start_handler(message: types.Message):
 
 async def help_handler(message: types.Message):
     await bot.send_message(message.chat.id, 'Чтобы начать викторину, введите команду /quiz'
-                                            '\nЧтобы получить случайный мем, введите команду /meme'
+                                            '\nЧтобы получить случайный мем, введите команду /mem'
                                             '\nЧтобы сыграть со мной в кости, введите /dice'
+                                            '\nЧтобы выбрать что посмотреть, введите /watch'
                                             '\nЧтобы закрепить сообщение, введите команду !pin'
                                             ' в ответе на это сообщение'
                                             '\nЧтобы открепить все сообщения, закрепленные мной'
                                             ', введите команду !unpinall'
-                                            'Чтобы зарегистрировать ментора, введите /reg (Доступно только для админов'
+                                            '\nЧтобы зарегистрировать ментора,'
+                                            ' введите /reg (Доступно только для админов)'
+                                            '\nЧтобы удалить ментора введите /del (доступно только для админов)'
+                                            '\nЧтобы получить данные случайного ментора, введите /get'
                                             '\nЕсли начать сообщение со слова "game", то я отправлю случайный '
                                             'анимированный эмодзи (доступно только для админов)'
                                             '\nТакже вы можете отправить мне целое число,'
@@ -95,6 +99,16 @@ async def get_random_user(message: types.Message):
     await sql_command_random(message)
 
 
+async def get_movies(message: types.Message):
+    markup = InlineKeyboardMarkup()
+    films = InlineKeyboardButton('Фильмы', callback_data="button_film")
+    serial = InlineKeyboardButton('Сериалы', callback_data="button_serial")
+    anime = InlineKeyboardButton('Аниме', callback_data="button_anime")
+    cartoon = InlineKeyboardButton('Мультфильмы', callback_data="button_cartoon")
+    markup.add(films, serial, anime, cartoon)
+    await bot.send_message(message.from_user.id, "Что вы хотите посмотреть?", reply_markup=markup)
+
+
 def register_handlers_client(dp: Dispatcher):
     dp.register_message_handler(start_handler, commands=['start'])
     dp.register_message_handler(help_handler, commands=['help'])
@@ -104,3 +118,4 @@ def register_handlers_client(dp: Dispatcher):
     dp.register_message_handler(unpin, commands=['unpinall'], commands_prefix='!')
     dp.register_message_handler(dice, commands=['dice'])
     dp.register_message_handler(sql_command_random, commands=['get'])
+    dp.register_message_handler(get_movies, commands=['watch'])
