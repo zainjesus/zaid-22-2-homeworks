@@ -16,6 +16,7 @@ async def inline_wiki_handler(query: types.InlineQuery):
         id=hashlib.md5(text.encode()).hexdigest(),
         title="Wikipedia",
         url=link,
+        thumb_url="https://pbs.twimg.com/media/E-1gDMNWUAAXq8k.jpg",
         input_message_content=types.InputMessageContent(
             message_text=f"Лови ссылку сыночек\n{link}"
         )
