@@ -14,7 +14,7 @@ async def inline_wiki_handler(query: types.InlineQuery):
 
     articles = [types.InlineQueryResultArticle(
         id=hashlib.md5(text.encode()).hexdigest(),
-        title=f"Результат поиска в Wiki:",
+        title=f"Результат поиска в Wiki по запросу {text}:",
         url=link,
         thumb_url="https://pbs.twimg.com/media/E-1gDMNWUAAXq8k.jpg",
         input_message_content=types.InputMessageContent(
